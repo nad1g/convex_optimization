@@ -1,0 +1,119 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsmath,amssymb,graphicx,float,subfig}
+
+%defines
+\def\bR{{\bf R}}
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bX{{\bf X}}
+\def\bH{{\bf H}}
+\def\bE{{\bf E}}
+\def\bI{{\bf I}}
+\def\bG{{\bf G}}
+\def\bV{{\bf V}}
+\def\bQ{{\bf Q}}
+\def\btQ{{\bf \tilde Q}}
+\def\bC{{\bf C}}
+\def\btA{{\bf \tilde A}}
+\def\b1{{\bf 1}}
+\def\bx{{\bf x}}
+\def\bb{{\bf b}}
+\def\be{{\bf e}}
+\def\bw{{\bf w}}
+\def\by{{\bf y}}
+\def\bz{{\bf z}}
+\def\btx{{\bf{\tilde x}}}
+\def\blambda{{\boldsymbol \lambda}}
+\def\bgamma{{\boldsymbol \gamma}}
+\def\btheta{{\boldsymbol \theta}}
+\def\bbeta{{\boldsymbol \beta}}
+\def\bnu{{\boldsymbol \nu}}
+\def\bmu{{\boldsymbol \mu}}
+\def\sigmaeps{{\sigma_{\epsilon}}}
+\def\bxmode{{\hat \bx^{(0)}}}
+\def\txmode{{\tilde \bx_{\mathrm{mode}}}}
+\def\txsample{{\tilde \bx_{\mathrm{sample}}}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+%opening
+\title{Additional Problems}
+\author{Santhosh Nadig}
+
+\begin{document}
+
+\maketitle
+
+\section*{A2.30}
+
+We need to show that the infimal convolution of two functions  $f$ and  $g$ on $\bR^n$ with $f(x) = \norm{x}_1$ and $g(x) = (1/2) \norm{x}^2_2$ given by
+\begin{align*}
+h(x) = \inf_{y} (\norm{y}_1 + \frac{1}{2} \norm{x-y}^2_2)
+\end{align*}
+is the Huber Penalty
+\begin{align*}
+h(x) = \sum_{i=1}^n \phi(x_i), \qquad \phi(u) = \begin{cases}
+u^2 & |u| \le 1 \\
+|u| - \frac{1}{2} & |u| > 1.
+\end{cases}
+\end{align*}
+
+For $y_i < 0$, the argument that minimizes $h(x_i)$ is given by setting $h_1'(x_i) = -1 - (x_i - y_i)$ to 0, yielding $y_i^* = x_i + 1$ with the condition $x_i < -1$. Similarly, for $y_i > 0$,  we get $y_i^* = x_i - 1$ with the condition $x_i > 1$.  When  $x_i \in [-1, 1]$, the function is non-differentiable meaning $y_i^* = 0$. Thus, we have,
+\begin{align}
+y_i^* = \begin{cases}
+x_i - 1 & x_i > 1 \\
+0, & -1 \le x_i \le 1 \\
+ x_i + 1 & x_i < -1.
+\end{cases}
+\end{align}
+Substituting $y_i = y_i^*$ for each element in $h(x)$, we get
+\begin{align}
+\phi(x_i)  = \begin{cases}
+x_i^2 & |x_i| \le 1 \\
+|x_i| - \frac{1}{2} & |x_i| > 1.
+\end{cases}
+\end{align}
+which is the Huber loss.
+
+
+
+\section*{A2.31 (b,c)}
+The function $h: \bR \rightarrow \bR$ is convex, non-decreasing, with $\text{dom } h = \bR$ and $h(t) = h(0), t \le 0$. We need to show that the conjugate of a function $f(x) = h(\norm{x}_2)$ with  $x \in \bR^n$ is $f^*(y) = h^*(\norm{y}_2)$.
+\begin{align*}
+f^*(y) = \sup_{x \in \bR^n} (y^T x - f(x))
+\end{align*}
+From the property of dual-norm, we have $y^T x \le \norm{y}_* \norm{x}$, where the strict equality holds for some optimal $y$. Using the fact that the Euclidean norm is self-dual, we may write
+\begin{align}
+f^*(y) &= \sup_{x \in \bR^n} ( \norm{y}_2 \norm{x}_2 - f(x)) \nonumber \\
+&=  \sup_{x \in \bR^n} ( \norm{y}_2 \norm{x}_2 - h(\norm{x}_2)) \nonumber \\
+&=  \sup_{\norm{x}_2 \in \bR } ( \norm{y}_2 \norm{x}_2 - h(\norm{x}_2)) = h^*( \norm{y}_2)
+\label{eq:res1}
+\end{align}
+Using this result, we need to derive the conjugate of $f(x) = 1/p \norm{x}_2^p$ with $h(t)$ defined as
+\begin{align*}
+h(t) = \frac{1}{p} \max\{0,t\}^p = \begin{cases}
+\frac{1}{p} t^p, & t \ge 0 \\
+0, & t < 0
+\end{cases}
+\end{align*}
+The conjugate of $h(x)$ is given by
+\begin{align*}
+h^*(z) = \sup_{x \in \bR} (zx - 1/p x^p)
+\end{align*}
+By setting the derivative w.r.t $x$ of the above to 0, we find that the $x$ that achieves the maximum is $x = z^{1/(p-1)}$. Thus,
+\begin{align*}
+h^*(z) &= z\cdot  z^{1/(p-1)}- 1/p z^{p/(p-1)} \\
+&=  \frac{p-1}{p} z^{p/(p-1))} \\
+&=  \frac{1}{p/(p-1)} z^{p/(p-1)}
+\end{align*}
+Using \ref{eq:res1}, we have
+\begin{align}
+f^*(y) &= \frac{1}{p/(p-1)} \norm{y}_2^{p/(p-1)}
+\end{align}
+We can easily verify that $f^{**} = f$ (since $f$ is closed, convex etc.)
+\begin{align*}
+f^{**}(x) &= \frac{\frac{1}{p/(p-1)}}{(p/(p-1) - 1)} \norm{x}_2^{\frac{p/(p-1)}{(p/(p-1) - 1)}} \\
+&= \frac{\frac{1}{p/(p-1)}}{\frac{1}{(p-1)}} \norm{x}_2^{\frac{p/(p-1)}{1/(p-1)}} \\
+&= \frac{1}{p} \norm{x}_2^p = f(x).
+\end{align*}
+\end{document}
+
