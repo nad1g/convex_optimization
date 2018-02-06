@@ -86,12 +86,15 @@ To express the cost function as a {\em linear} cost function, we use the epigrap
 Thus, we may express the cost function (and the minimization problem) as:
 \begin{align}
 \text{minimize} & \qquad \mathbf{1}^T t \nonumber \\
-\text{subject~to} & \qquad Hu = x_{\text{des}} \nonumber\\
+\text{subject~to} & \qquad Du = x_{\text{des}} \nonumber\\
 & \qquad  u \preceq t \nonumber \\
 & \qquad  -u \preceq t \nonumber\\
 & \qquad 2u-1 \preceq t \nonumber\\
 & \qquad-2u-1\preceq t
 \end{align}
+where $D = \begin{bmatrix}
+ A^{N-1}b & A^{N-2}b & \dots &b
+\end{bmatrix}$.
 
 For the example in A3.17 with the following data
 \begin{align*}
