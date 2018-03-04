@@ -1,0 +1,56 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsmath,amssymb,graphicx,float,subfig}
+
+%defines
+\def\bR{{\bf R}}
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bX{{\bf X}}
+\def\bH{{\bf H}}
+\def\bE{{\bf E}}
+\def\bI{{\bf I}}
+\def\bG{{\bf G}}
+\def\bV{{\bf V}}
+\def\bQ{{\bf Q}}
+\def\btQ{{\bf \tilde Q}}
+\def\bC{{\bf C}}
+\def\btA{{\bf \tilde A}}
+\def\b1{{\bf 1}}
+\def\bx{{\bf x}}
+\def\bb{{\bf b}}
+\def\be{{\bf e}}
+\def\bw{{\bf w}}
+\def\by{{\bf y}}
+\def\bz{{\bf z}}
+\def\btx{{\bf{\tilde x}}}
+\def\blambda{{\boldsymbol \lambda}}
+\def\dom{{\bf{dom}}}
+\def\bgamma{{\boldsymbol \gamma}}
+\def\btheta{{\boldsymbol \theta}}
+\def\bbeta{{\boldsymbol \beta}}
+\def\bnu{{\boldsymbol \nu}}
+\def\bmu{{\boldsymbol \mu}}
+\def\sigmaeps{{\sigma_{\epsilon}}}
+\def\bxmode{{\hat \bx^{(0)}}}
+\def\txmode{{\tilde \bx_{\mathrm{mode}}}}
+\def\txsample{{\tilde \bx_{\mathrm{sample}}}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+%opening
+\title{Solutions to additional problems.}
+\author{Santhosh Nadig}
+
+\begin{document}
+A posynomial is defined as
+\begin{align}
+f(x_1, x_2,\dots,x_n) = \sum_{i=1}^m \beta_i \prod_{j=1}^n x_i^{a_{ij}}, \qquad \dom f = \bR_{++}^n,
+\end{align}
+with $\beta_i > 0$.
+We are given the following rules:
+\begin{enumerate}
+\item A posynomial is a generalized posynomial
+\item The maximum $f(x) = \max\{ g_1(x),\dots, g_m(x) \}$ of $m$ generalized posynomials $g_k$ is a generalized posynomial
+\item The composition $f(x) = h(g_1(x),\dots, g_m(x))$ of a monotone posynomial (i.e., $a_{ij} > 0$) $h$ of m variables with generalized posynomials $g_1(x),\dots, g_m(x)$ is a posynomial.
+\end{enumerate}
+\end{document}
+
